@@ -37,7 +37,7 @@ const Home = ({formData,handleChange,fetchQuestions,quizQuestions,setQuizQuestio
         {isFetchError && <button onClick={()=>window.location='/'}>Try again</button>}
     </div>
     </>  :  
-    <QuizPage categoryId={formData.category} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions} setIsFetchInitiated={setIsFetchInitiated}/>}
+    <QuizPage  categoryId={formData.category} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions} setIsFetchInitiated={setIsFetchInitiated}/>}
     </>
   )
 }

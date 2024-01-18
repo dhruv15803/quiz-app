@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import categories from '../../categories'
-import QuestionCard from '../Components/questionCard';
-import { Link } from 'react-router-dom';
+import QuestionCard from '../Components/QuestionCard'
 
-const QuizPage = ({categoryId,quizQuestions,setQuizQuestions,setIsFetchInitiated,currentQuestions}) => {
+const QuizPage = ({categoryId,quizQuestions,setQuizQuestions,setIsFetchInitiated}) => {
 
     const [categoryText,setCategoryText] = useState("");
     const [isSubmitted,setIsSubmitted] = useState(false); 

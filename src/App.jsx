@@ -47,19 +47,13 @@ function App() {
     }
   }
 
-  const indexOfLastQuestion = currentPage * questionsPerPage;
-  const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
-  const currentQuestions = quizQuestions?.slice(indexOfFirstQuestion,indexOfLastQuestion);
-
-
-
 
   return (
     <>
     <Router>
       <Header/>
       <Routes>
-        <Route path="/" element={<Home formData={formData} handleChange={handleChange} fetchQuestions={fetchQuestions} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions} isLoader={isLoader} isFetchInitiated={isFetchInitiated} setIsFetchInitiated={setIsFetchInitiated} isFetchError={isFetchError} currentQuestions={currentQuestions}/>}/>
+        <Route path="/" element={<Home formData={formData} handleChange={handleChange} fetchQuestions={fetchQuestions} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions} isLoader={isLoader} isFetchInitiated={isFetchInitiated} setIsFetchInitiated={setIsFetchInitiated} isFetchError={isFetchError}/>}/>
       </Routes>
     </Router>
     </>

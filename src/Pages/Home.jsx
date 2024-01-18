@@ -1,11 +1,19 @@
 import React from 'react'
 import categories from '../../categories.js'
 import QuizPage from './QuizPage.jsx'
+import pencilImg from '../Images/pencilImg.jpg'
+import Loader from '../Components/Loader.jsx'
 
-const Home = ({formData,handleChange,fetchQuestions,quizQuestions,setQuizQuestions}) => {
+const Home = ({formData,handleChange,fetchQuestions,quizQuestions,setQuizQuestions,isLoader,isFetchInitiated,setIsFetchInitiated,isFetchError}) => {
+
   return (
     <>
-    {quizQuestions===null ? <form onSubmit={fetchQuestions} className='flex flex-col p-2  m-4 rounded-lg shadow-xl border-2 my-40'>
+    {isFetchInitiated===false ?  <>
+    <div className='m-4 flex justify-center items-center'>
+        <img className='w-44' src={pencilImg} alt="" />
+        <p className='font-thin'>Test yourself on topics ranging from General knowledge, entertainment to science,politics,art,history</p>
+    </div>
+    <form onSubmit={fetchQuestions} className='flex flex-col p-2  m-4 rounded-lg shadow-xl border-2'>
         <input className='border-2 rounded-lg my-2 p-2' value={formData.amount} onChange={handleChange} type="number" name="amount" id="amount" placeholder='Enter no of questions'/>
         <select className='border-2 rounded-lg my-2 p-2' value={formData.difficulty} onChange={handleChange} name="difficulty" id="">
             <option value="easy">Easy</option>
@@ -22,7 +30,14 @@ const Home = ({formData,handleChange,fetchQuestions,quizQuestions,setQuizQuestio
             })}
         </select>
         <button className='border-2 border-blue-500 text-blue-500 rounded-lg my-4 w-1/2 mx-auto'>Start quiz</button>
-    </form>: <QuizPage categoryId={formData.category} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions}   />}
+    </form>
+    </>: isLoader ? <>
+    <div className='flex my-40 justify-center'>
+        {isFetchError===false && <Loader/>}
+        {isFetchError && <button onClick={()=>window.location='/'}>Try again</button>}
+    </div>
+    </>  :  
+    <QuizPage categoryId={formData.category} quizQuestions={quizQuestions} setQuizQuestions={setQuizQuestions} setIsFetchInitiated={setIsFetchInitiated}/>}
     </>
   )
 }
